@@ -2,11 +2,15 @@
 
 This is a collection of various tests pages that let you test and reproduce various features of Matomo.
 
+It is especially useful for Matomo core developers and Matomo support but also anyone else who wants to test a specific feature.
+
 ## Installation
 
 This can be hosted either on the same domain as Matomo or on a different domain.
 
 To install it, simply clone this repository using git.
+
+To run this project you only PHP 7.4 or newer.
 
 ## Configuration
 
@@ -19,8 +23,10 @@ Variables:
 
 ## File Structure
 
-* tracking/*.php - all tracking related test files are put into this directory. Ideally, features are grouped together when possible like `tracking/events/*.php` and `tracking/content/*.php`.
+* `tracking/*.php` - all tracking related test files are put into this directory. Ideally, features are grouped together when possible like `tracking/events/*.php` and `tracking/content/*.php`.
 * `consent/*.php` - includes consent and opt out related examples
+
+In directory and file names please use an underscore (`_`) to separate words as it's best to read on the index page this way. 
 
 ## Adding a new page
 
@@ -32,3 +38,7 @@ Variables:
 ## Viewing a page
 
 Either open the index page of this directory in the browser or directly load a specific filename in the browser.
+
+## License
+
+GPL v3 (or later) license, see [LICENSE](LICENSE).
