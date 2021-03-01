@@ -1,4 +1,4 @@
-<?php include '../bootstrap.php'; ?>
+<?php include '../../bootstrap.php'; ?>
 <html>
 <head>
     <!-- Matomo -->
