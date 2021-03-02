@@ -15,7 +15,7 @@
 
         })();
     </script>
-    <script type='text/javascript' src="<?php echo $matomoUrl ?>/matomo.js"></script>
+    <script type='text/javascript' src="<?php echo $matomoUrl ?>/js/piwik.js"></script>
     <!-- End Matomo Code -->
 </head>
 <body>
@@ -25,6 +25,7 @@
     <button onclick="jsError01()">JS error 1</button>
     <button onclick="jsError02()">JS error 2</button>
     <button onclick="jsError03()">JS error 3</button>
+    <button onclick="newPage()">Simulate SPA new page</button>
 </div>
 
 <script>
@@ -34,6 +35,10 @@
 
     function jsError02() {
         let a = b;
+    }
+
+    function newPage() {
+        _paq.push(['trackPageView']);
     }
 </script>
 </body>
