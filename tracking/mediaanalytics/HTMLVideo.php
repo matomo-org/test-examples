@@ -1,6 +1,9 @@
 <?php include '../../bootstrap.php'; ?>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    <title>MediaAnalytics</title>
     <!-- Matomo -->
     <script type="text/javascript">
         var _paq = window._paq = window._paq || [];

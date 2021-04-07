@@ -2,6 +2,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <meta charset="utf-8">
     <title>Tag Manager Testpage</title>
     <!-- Matomo Tag Manager -->
     <script type="text/javascript">
