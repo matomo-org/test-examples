@@ -3,11 +3,10 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>MediaAnalytics</title>
+    <title>OptOut using Javascript</title>
     <!-- Matomo -->
     <script type="text/javascript">
         var _paq = window._paq = window._paq || [];
-        _paq.push(['MediaAnalytics::enableDebugMode']);
         /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
         _paq.push(['trackPageView']);
         _paq.push(['enableLinkTracking']);
