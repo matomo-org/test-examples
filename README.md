@@ -20,11 +20,14 @@ Variables:
 
 * `matomoUrl` - The URL to the Matomo installation. A trailing slash will be removed automatically
 * `matomoIdSite` - The ID of the site data should be tracked into or data should be requested from
+* `matomoTagManagerContainer` - The ID of the Tag-Manager container that should be used in the Tag-Manager examples 
 
 ## File Structure
 
 * `tracking/*.php` - all tracking related test files are put into this directory. Ideally, features are grouped together when possible like `tracking/events/*.php` and `tracking/content/*.php`.
 * `consent/*.php` - includes consent and opt out related examples
+* `consent/consent_manager/*.php` - embedding Matomo using popular third-party consent managers
+* `tagmanager/*.php`
 
 In directory and file names please use an underscore (`_`) to separate words as it's best to read on the index page this way. 
 
