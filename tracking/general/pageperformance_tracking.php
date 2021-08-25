@@ -14,6 +14,16 @@
             _paq.push(['setSiteId', '<?php echo $matomoIdSite ?>']);
 
         })();
+
+        setTimeout(function () {
+
+            _paq.push(['setPagePerformanceTiming', 494, 93]);
+            _paq.push(['trackPageView']);
+        }, 1000);
+        setTimeout(function () {
+
+            _paq.push(['trackPageView']);
+        }, 3000);
     </script>
     <script type='text/javascript' src="<?php echo $matomoUrl ?>/js/piwik.js"></script>
     <!-- End Matomo Code -->
@@ -21,7 +31,8 @@
 <body>
 <h1>Page Performance Tracking</h1>
 <p>We're sending custom page performance timings along a page view tracking request. See the browser developer tools network tab for pf* tracking parameters.</p>
-
+<p>It will also send a second tracking page view request with different page performance values.</p>
+<p>Then it will send a third page view request which should not include page performance metrics.</p>
 <div>
 </div>
 </body>
