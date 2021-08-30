@@ -7,6 +7,7 @@
         var _paq = window._paq = window._paq || [];
         _paq.push(['trackPageView']);
         _paq.push(['setPagePerformanceTiming', 345, 55]);
+        _paq.push(['trackPageView']);
         _paq.push(['enableLinkTracking']);
         (function() {
             var u="<?php echo $matomoUrl ?>/";
@@ -23,7 +24,24 @@
         setTimeout(function () {
 
             _paq.push(['trackPageView']);
+        }, 2000);
+        setTimeout(function () {
+
+            _paq.push(['setPagePerformanceTiming', 1, 2, 3, 4, 5, 6, 7]); // 7 does nothing
+            _paq.push(['trackPageView']);
         }, 3000);
+        setTimeout(function () {
+
+            _paq.push(['trackPageView']);
+        }, 4000);
+        setTimeout(function () {
+
+            _paq.push(['setPagePerformanceTiming']); // set nothing
+        }, 5000);
+        setTimeout(function () {
+
+            _paq.push(['trackPageView']);
+        }, 6000);
     </script>
     <script type='text/javascript' src="<?php echo $matomoUrl ?>/js/piwik.js"></script>
     <!-- End Matomo Code -->
