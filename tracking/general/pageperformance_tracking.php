@@ -42,6 +42,11 @@
 
             _paq.push(['trackPageView']);
         }, 6000);
+        setTimeout(function () {
+
+            _paq.push(['setPagePerformanceTiming', 'thisisastring']); // set nothing
+            _paq.push(['trackPageView']);
+        }, 7000);
     </script>
     <script type='text/javascript' src="<?php echo $matomoUrl ?>/js/piwik.js"></script>
     <!-- End Matomo Code -->
