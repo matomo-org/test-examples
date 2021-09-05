@@ -29,17 +29,48 @@ ob_end_clean();
 </head>
 <body>
 <h1>Log Deleter Test Generate</h1>
-<form action="index.php" name="another">
-    <input type="text" name="input1" value="something">
+<form action="index.php" name="form_b">
+    <input id="inputel" type="text" name="input1" value="something">
     <input type="text" name="input2" value="else">
     <input type="text" name="input3" value="here">
     <input type="submit" value="Submit">
 </form>
 <div>
+    <h1>One way to test this fix:</h1>
+    Press Submit a few times. Then run:<br>
+
+<pre>
+SELECT * FROM matomo_log_form_field;
+-- use something < 300 days from today as the visit_last_action_time
+UPDATE matomo_log_visit
+SET visit_last_action_time='2020-08-02'
+WHERE idvisit IN (
+  SELECT MAX(idvisit) FROM matomo_log_form
+);
+</pre>
+
+    <p>
+        Set your logs to expire if they are 300 days or older:
+        Administration - Privacy - Anonymize data - Regularly delete old raw data - Delete logs older than (days): 300
+    </p>
+    <p>
+        Then run
+    </p>
+<pre>
+./console core:run-scheduled-tasks --force \
+"Piwik\Plugins\PrivacyManager\Tasks.deleteLogData"
+</pre>
+
+    <p>Then check if the logs were deleted again with</p>
+<pre>
+SELECT * FROM matomo_log_form_field;
+</pre>
 </div>
 <script>
+    var count = 10;
+    document.querySelector('#inputel').value += ' ' + Math.ceil(Math.random() * 10000);
     async function auto() {
-        await fetch("/matomo.php?fa_vid=NF7NS9&fa_name=autmatically_tracked_form&fa_fv=1&ca=1&idsite=1&rec=1&r=949486&h=13&m=30&s=34&url=http%3A%2F%2Fmatomo.test%2Ftest-examples%2Flogdeleter%2Fgeneral%2Findex.php%3Finput1%3Danother%26input2%3Delse%26input3%3Dhere&urlref=http%3A%2F%2Fmatomo.test%2Ftest-examples%2Flogdeleter%2Fgeneral%2Findex.php%3Finput1%3Dhello%26input2%3Delse%26input3%3Dhere&_id=67372cc1b9f02550&_idn=0&_refts=0&send_image=0&cookie=1&res=1920x1080&pv_id=rXGVnG", {
+        await fetch("/matomo.php?cdt=2020-08-01+23%3A08%3A47&fa_vid=NF7NS9&fa_name=automatically_tracked_form&fa_fv=1&ca=1&idsite=1&rec=1&r=949486&h=13&m=30&s=34&url=http%3A%2F%2Fmatomo.test%2Ftest-examples%2Flogdeleter%2Fgeneral%2Findex.php%3Finput1%3Danother%26input2%3Delse%26input3%3Dhere&urlref=http%3A%2F%2Fmatomo.test%2Ftest-examples%2Flogdeleter%2Fgeneral%2Findex.php%3Finput1%3Dhello%26input2%3Delse%26input3%3Dhere&_id=67372cc1b9f02550&_idn=0&_refts=0&send_image=0&cookie=1&res=1920x1080&pv_id=rXGVnG", {
             "credentials": "include",
             "headers": {
                 "Accept": "*/*",
@@ -49,8 +80,11 @@ ob_end_clean();
             "method": "POST",
             "mode": "cors"
         });
+        if (count--) {
+            auto();
+        }
     }
-    auto();
+    // auto();
 </script>
 </body>
 </html>
