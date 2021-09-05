@@ -37,11 +37,17 @@ ob_end_clean();
 </form>
 <div>
     <h1>One way to test this fix:</h1>
+    <p>Apply PrivacyManager.patch: git apply /tmp/PrivacyManager.patch</p>
+    <p>
+        Set your logs to expire to more than 300 days, 400 e.g.:
+        Administration - Privacy - Anonymize data - Regularly delete old raw data - Delete logs older than (days): 400
+    </p>
     Press Submit a few times. Then run:<br>
 
 <pre>
 SELECT * FROM matomo_log_form_field;
--- use something < 300 days from today as the visit_last_action_time
+-- not number of records
+-- use something > 300 days from today in the past as the visit_last_action_time
 UPDATE matomo_log_visit
 SET visit_last_action_time='2020-08-02'
 WHERE idvisit IN (
