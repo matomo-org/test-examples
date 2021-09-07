@@ -50,13 +50,9 @@ ob_end_clean();
 
 <pre>
 SELECT * FROM matomo_log_form_field;
--- not number of records
+-- note number of records
 -- use something > 300 days from today in the past as the visit_last_action_time
-UPDATE matomo_log_visit
-SET visit_last_action_time='2020-08-02'
-WHERE idvisit IN (
-  SELECT MAX(idvisit) FROM matomo_log_form
-);
+UPDATE matomo_log_visit SET visit_last_action_time='2020-08-02' WHERE idvisit IN ( SELECT MAX(idvisit) FROM matomo_log_form );
 </pre>
 
     <p>
@@ -74,6 +70,43 @@ WHERE idvisit IN (
     <p>Then check if the logs were deleted again with</p>
 <pre>
 SELECT * FROM matomo_log_form_field;
+
+
+-- should see something like
+mysql> SELECT * FROM matomo_log_form_field;
++-----------+---------------+------------+------------+------------+------------+-----------------+------------+------------+-----------+-------------+-----------+-------------+------------+
+| idlogform | idlogformpage | idformview | idpageview | field_name | time_spent | time_hesitation | field_size | left_blank | submitted | num_changes | num_focus | num_deletes | num_cursor |
++-----------+---------------+------------+------------+------------+------------+-----------------+------------+------------+-----------+-------------+-----------+-------------+------------+
+|        16 |            43 | LXtUca     | o1ojuf     | input1     |          0 |               0 |         19 |          0 |         1 |           0 |         0 |           0 |          0 |
+|        16 |            43 | LXtUca     | o1ojuf     | input2     |          0 |               0 |          4 |          0 |         1 |           0 |         0 |           0 |          0 |
+|        16 |            43 | LXtUca     | o1ojuf     | input3     |          0 |               0 |          4 |          0 |         1 |           0 |         0 |           0 |          0 |
+|        23 |            58 | ZDa9lV     | AoiSVy     | input1     |          0 |               0 |         14 |          0 |         1 |           0 |         0 |           0 |          0 |
+|        23 |            58 | ZDa9lV     | AoiSVy     | input2     |          0 |               0 |          4 |          0 |         1 |           0 |         0 |           0 |          0 |
+|        23 |            58 | ZDa9lV     | AoiSVy     | input3     |          0 |               0 |          4 |          0 |         1 |           0 |         0 |           0 |          0 |
+|        24 |            60 | zaODNJ     | 5n71Xl     | input1     |          0 |               0 |         13 |          0 |         1 |           0 |         0 |           0 |          0 |
+|        24 |            60 | zaODNJ     | 5n71Xl     | input2     |          0 |               0 |          4 |          0 |         1 |           0 |         0 |           0 |          0 |
+|        24 |            60 | zaODNJ     | 5n71Xl     | input3     |          0 |               0 |          4 |          0 |         1 |           0 |         0 |           0 |          0 |
+|        25 |            62 | 6dyNdt     | 1naZ27     | input1     |          0 |               0 |         14 |          0 |         1 |           0 |         0 |           0 |          0 |
+|        25 |            62 | 6dyNdt     | 1naZ27     | input2     |          0 |               0 |          4 |          0 |         1 |           0 |         0 |           0 |          0 |
+|        25 |            62 | 6dyNdt     | 1naZ27     | input3     |          0 |               0 |          4 |          0 |         1 |           0 |         0 |           0 |          0 |
++-----------+---------------+------------+------------+------------+------------+-----------------+------------+------------+-----------+-------------+-----------+-------------+------------+
+12 rows in set (0.00 sec)
+
+mysql> SELECT * FROM matomo_log_form_field;
++-----------+---------------+------------+------------+------------+------------+-----------------+------------+------------+-----------+-------------+-----------+-------------+------------+
+| idlogform | idlogformpage | idformview | idpageview | field_name | time_spent | time_hesitation | field_size | left_blank | submitted | num_changes | num_focus | num_deletes | num_cursor |
++-----------+---------------+------------+------------+------------+------------+-----------------+------------+------------+-----------+-------------+-----------+-------------+------------+
+|        16 |            43 | LXtUca     | o1ojuf     | input1     |          0 |               0 |         19 |          0 |         1 |           0 |         0 |           0 |          0 |
+|        16 |            43 | LXtUca     | o1ojuf     | input2     |          0 |               0 |          4 |          0 |         1 |           0 |         0 |           0 |          0 |
+|        16 |            43 | LXtUca     | o1ojuf     | input3     |          0 |               0 |          4 |          0 |         1 |           0 |         0 |           0 |          0 |
+|        23 |            58 | ZDa9lV     | AoiSVy     | input1     |          0 |               0 |         14 |          0 |         1 |           0 |         0 |           0 |          0 |
+|        23 |            58 | ZDa9lV     | AoiSVy     | input2     |          0 |               0 |          4 |          0 |         1 |           0 |         0 |           0 |          0 |
+|        23 |            58 | ZDa9lV     | AoiSVy     | input3     |          0 |               0 |          4 |          0 |         1 |           0 |         0 |           0 |          0 |
+|        24 |            60 | zaODNJ     | 5n71Xl     | input1     |          0 |               0 |         13 |          0 |         1 |           0 |         0 |           0 |          0 |
+|        24 |            60 | zaODNJ     | 5n71Xl     | input2     |          0 |               0 |          4 |          0 |         1 |           0 |         0 |           0 |          0 |
+|        24 |            60 | zaODNJ     | 5n71Xl     | input3     |          0 |               0 |          4 |          0 |         1 |           0 |         0 |           0 |          0 |
++-----------+---------------+------------+------------+------------+------------+-----------------+------------+------------+-----------+-------------+-----------+-------------+------------+
+9 rows in set (0.00 sec)
 </pre>
 </div>
 <script>
