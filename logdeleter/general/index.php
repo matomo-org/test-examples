@@ -22,6 +22,10 @@ ob_end_clean();
             _paq.push(['trackPageView']);
         })();
 
+        function formSubmit() {
+            _paq.push(['appendToTrackingUrl', 'new_visit=1']); // force new visit, @see https://matomo.org/faq/how-to/faq_187/
+        }
+
     </script>
 <!--    <script type='text/javascript' src="--><?php //echo $matomoUrl ?><!--/js/piwik.js"></script>-->
     <script src="../../../tests/resources/matomo.test.js?rand=<?php echo bin2hex(random_bytes(32)); ?>"></script>
@@ -29,7 +33,7 @@ ob_end_clean();
 </head>
 <body>
 <h1>Log Deleter Test Generate</h1>
-<form action="index.php" name="form_b">
+<form action="index.php" name="form_b" onsubmit="formSubmit()">
     <input id="inputel" type="text" name="input1" value="something">
     <input type="text" name="input2" value="else">
     <input type="text" name="input3" value="here">
