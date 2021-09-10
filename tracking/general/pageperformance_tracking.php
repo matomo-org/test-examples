@@ -6,7 +6,7 @@
     <script type="text/javascript">
         var _paq = window._paq = window._paq || [];
         _paq.push(['trackPageView']);
-        _paq.push(['setPagePerformanceTiming', 345, 55]);
+        _paq.push(['setPagePerformanceTiming', 345, 55, undefined]);
         _paq.push(['trackPageView']);
         _paq.push(['enableLinkTracking']);
         (function() {
@@ -45,6 +45,17 @@
         setTimeout(function () {
 
             _paq.push(['setPagePerformanceTiming', 'thisisastring']); // set nothing
+            _paq.push(['trackPageView']);
+        }, 7000);
+        setTimeout(function () {
+
+            var obj = {
+                pf_srv: 12,
+                pf_tfr: 34,
+                pf_dm2: 56,
+                pf_onl: 78
+            };
+            _paq.push(['setPagePerformanceTiming', obj]); // set nothing
             _paq.push(['trackPageView']);
         }, 7000);
     </script>
